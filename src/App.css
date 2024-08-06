@@ -1,0 +1,8 @@
+.h1 {
+  background: url(./assets/img/h1.jpeg);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation-name: h1;
+  animation-duration: 5s;
+  animation-iteration-count: infinite;
+}
