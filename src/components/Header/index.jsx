@@ -4,6 +4,7 @@ import { FiShoppingBag } from "react-icons/fi";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 const Header = () => {
+  const {favorite}=useSelector((s)=>s)
   return (
     <div className="flex justify-between items-center py-[20px] w-full">
       <div className="container ">
@@ -54,8 +55,18 @@ const Header = () => {
           </div>
           <div className=" text-[30px] flex gap-5 items-center">
             <Link to={"/favorite"}>
-              <a className=" ">
-                <CiHeart />
+              <a className=" ">{
+              <>
+                 {
+
+                 favorite.length? <h2 className="favor">{favorite.length}
+                </h2>
+                 } 
+                    <CiHeart />
+                  
+
+               :<CiHeart/>
+              </>}
               </a>
             </Link>
             <Link to={"/basket"}>
