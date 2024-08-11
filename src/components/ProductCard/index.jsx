@@ -5,16 +5,16 @@ import Zoom from "react-medium-image-zoom";
 import "react-medium-image-zoom/dist/styles.css";
 import { IoMdHeartEmpty } from "react-icons/io";
 import { ToastContainer, toast } from "react-toastify";
-
+import { FiShoppingBag } from "react-icons/fi";
 const ProductCard = ({ el }) => {
   const dispatch = useDispatch();
-  const { favorite, product, heart } = useSelector((s) => s);
-  const Somefav = favorite.some((ell) => ell.id === el.id);
+  const { favorite, product, basket } = useSelector((s) => s);
+  console.log(basket);
   const [Disp, setDisp] = useState("none");
-  const Massage = () => {
-    toast.error("🤦 Вы дабавили этот продукт!!", {
-      position: "top-right",
-      autoClose: false,
+  const SuccesMasage = () => {
+    toast.error(" Вы удалили этот продукт!", {
+      position: "bottom-right",
+      autoClose: 5000,
       hideProgressBar: true,
       closeOnClick: true,
       pauseOnHover: true,
@@ -23,14 +23,37 @@ const ProductCard = ({ el }) => {
       theme: "colored",
     });
   };
+
+  const basSome = basket.some((igy) => igy.id === el.id);
+  const AddTOBas = () => {
+    if (basSome) {
+      dispatch({ type: "DEL_BASKET", payload: el.id });
+    } else {
+      dispatch({ type: "BASKET", payload: el });
+    }
+  };
+
+  const Somefav = favorite.some((ell) => ell.id === el.id);
+
+  const Massage = () => {
+    toast.success(" Вы дабавили этот продукт!!", {
+      position: "top-right",
+      autoClose: false,
+      hideProgressBar: true,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "dark",
+    });
+  };
   const AddProduct = () => {
     if (Somefav) {
-      Massage();
-      dispatch({ type: "DEL_FAV", action: payload.id });
-
-      dispatch({ type: "DEL_FAV", action: payload.id });
+      dispatch({ type: "DEL_FAV", payload: el.id });
+      SuccesMasage();
     } else {
       dispatch({ type: "ADDFAVORITE", payload: el });
+      Massage();
     }
   };
 
@@ -43,11 +66,7 @@ const ProductCard = ({ el }) => {
               onClick={() => AddProduct()}
               className="text-2xl text-black cursor-pointer absolute top-1 left-1"
             >
-              <IoMdHeartEmpty
-                style={{
-                  color: heart ? "red" : "black",
-                }}
-              />
+              <IoMdHeartEmpty />
             </a>
             <Zoom>
               <div className=" w-[200px] flex items-center">
@@ -147,7 +166,9 @@ const ProductCard = ({ el }) => {
             >
               <VscClose />
             </a>
-
+            <a className="cursor-pointer" onClick={() => AddTOBas()}>
+              <FiShoppingBag />
+            </a>
             <div
               style={{
                 display: Disp,

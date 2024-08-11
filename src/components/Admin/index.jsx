@@ -9,6 +9,7 @@ const Admin = () => {
   const [PriceProduct, setPriceProduct] = useState("");
   const [Description, setDescription] = useState("");
   const dispatch = useDispatch();
+  const [Category, setCategory] = useState("");
   const Erorr = () => {
     toast.error("🤦 Пожалуйста заполните все обязательные поля!!", {
       position: "bottom-right",
@@ -52,6 +53,7 @@ const Admin = () => {
         img: UrlProduct,
         name: NameProduct,
         price: PriceProduct,
+        category: Category,
         rating: Math.round(Math.random() * 5),
         description: Description,
       };
@@ -61,6 +63,7 @@ const Admin = () => {
       setUrlProduct("");
       setDescription("");
     }
+
   };
 
   return (
@@ -95,6 +98,17 @@ const Admin = () => {
             onChange={(e) => setDescription(e.target.value)}
             value={Description}
           />
+          <select
+           onChange={(e)=>setCategory(e.target.value)}
+            className="text-xl w-[200px] outline-none"
+          >
+            <option value="" >Category</option>
+            <option value="mobiles">Mobiles</option>
+            <option value="laptops">Laptops</option>
+            <option value="headphones">Headphones</option>
+            <option value="tv"> TV</option>
+            <option value="speakers">Speakers</option>
+          </select>
           <ToastContainer />
           <button
             className=" py-2 text-white px-8 rounded-[15px] bg-blue-600"

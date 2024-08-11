@@ -7,6 +7,8 @@ import { VscClose } from "react-icons/vsc";
 import Zoom from "react-medium-image-zoom";
 import "react-medium-image-zoom/dist/styles.css";
 import ProductCard from "../ProductCard";
+import nike from "../../assets/img/nike.svg";
+import playstation from "../../assets/img/plastation.svg";
 const About = () => {
   const dispatch = useDispatch();
 
@@ -50,6 +52,18 @@ const About = () => {
             <img width={350} className="   " src={watch} alt="img" />
 
             <img width={230} className="" src={watch2} alt="img" />
+          </div>
+        </div>
+        <div className=" flex justify-between mt-[50px]">
+          <div className=" flex flex-col items-center overflow-hidden gap-2 bg-[#FAFAFA] w-[600px] h-[400px] justify-center">
+            <h1 className="text-[40px] font-[500]">Nike, Adidas</h1>
+            <p className="font-[200]">MIN 40% OFF</p>
+            <img src={nike} alt="img" width={400} />
+          </div>
+          <div className=" flex flex-col items-center overflow-hidden gap-2 bg-[#FAFAFA] w-[600px] h-[400px] justify-center">
+            <h1 className="text-[40px] font-[500]">PlayStation 5</h1>
+            <p className="font-[200]">MIN 25% OFF</p>
+            <img src={playstation} alt="img" width={400} />
           </div>
         </div>
         <div className=" flex  flex-wrap gap-[53px] ">
