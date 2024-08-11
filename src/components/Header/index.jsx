@@ -1,10 +1,12 @@
-import React from "react";
+import React, { useState } from "react";
 import { CiHeart } from "react-icons/ci";
 import { FiShoppingBag } from "react-icons/fi";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 const Header = () => {
-  const { favorite } = useSelector((s) => s);
+  const dispatch=useDispatch()
+  const [Search,setSearch]=useState("")
+  const { favorite,search } = useSelector((s) => s);
   return (
     <div className="flex justify-between items-center py-[20px] w-full">
       <div className="container ">
@@ -45,6 +47,9 @@ const Header = () => {
                   </svg>
                 </div>
                 <input
+                onChange={(e)=>{setSearch(e.target.value)
+                dispatch({ type: "SEARCH", payload: Search });
+                }}
                   type="search"
                   id="default-search"
                   class="block w-full p-2 ps-10 text-sm text-gray-400 border border-gray-300 rounded-2xl   focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-300 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 outline-none"

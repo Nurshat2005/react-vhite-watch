@@ -2,6 +2,7 @@ const obj = {
   product: JSON.parse(localStorage.getItem("product")) || [],
   favorite: JSON.parse(localStorage.getItem("favorite")) || [],
   basket: JSON.parse(localStorage.getItem("basket")) ||[],
+  search:""
 };
 export const Reducer = (state = obj, action) => {
   switch (action.type) {
@@ -48,6 +49,10 @@ export const Reducer = (state = obj, action) => {
         ...state,
         basket: delbasket,
       };
+      case "SEARCH":
+        return{
+          ...state,search:action.payload
+        }
 
     default:
       return state;

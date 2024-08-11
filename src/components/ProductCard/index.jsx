@@ -9,7 +9,7 @@ import { FiShoppingBag } from "react-icons/fi";
 const ProductCard = ({ el }) => {
   const dispatch = useDispatch();
   const { favorite, product, basket } = useSelector((s) => s);
-  console.log(basket);
+
   const [Disp, setDisp] = useState("none");
   const SuccesMasage = () => {
     toast.error(" Вы удалили этот продукт!", {
@@ -28,8 +28,10 @@ const ProductCard = ({ el }) => {
   const AddTOBas = () => {
     if (basSome) {
       dispatch({ type: "DEL_BASKET", payload: el.id });
+      SuccesMasage();
     } else {
       dispatch({ type: "BASKET", payload: el });
+      Massage();
     }
   };
 
@@ -38,7 +40,7 @@ const ProductCard = ({ el }) => {
   const Massage = () => {
     toast.success(" Вы дабавили этот продукт!!", {
       position: "top-right",
-      autoClose: false,
+      autoClose: 5000,
       hideProgressBar: true,
       closeOnClick: true,
       pauseOnHover: true,
@@ -63,6 +65,9 @@ const ProductCard = ({ el }) => {
         <div className="">
           <div className=" relative w-[280px] rounded-[10px]  bg-[#F9F9F9] h-[500px] mb-20 flex flex-col justify-center  items-center gap-2 ">
             <a
+              style={{
+                color: Somefav ? "red" : "black",
+              }}
               onClick={() => AddProduct()}
               className="text-2xl text-black cursor-pointer absolute top-1 left-1"
             >
@@ -166,7 +171,13 @@ const ProductCard = ({ el }) => {
             >
               <VscClose />
             </a>
-            <a className="cursor-pointer" onClick={() => AddTOBas()}>
+            <a
+              style={{
+                color: basSome ? "red" : "black",
+              }}
+              className="cursor-pointer"
+              onClick={() => AddTOBas()}
+            >
               <FiShoppingBag />
             </a>
             <div
