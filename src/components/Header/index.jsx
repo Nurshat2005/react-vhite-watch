@@ -4,11 +4,11 @@ import { FiShoppingBag } from "react-icons/fi";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 const Header = () => {
-  const {favorite}=useSelector((s)=>s)
+  const { favorite } = useSelector((s) => s);
   return (
     <div className="flex justify-between items-center py-[20px] w-full">
       <div className="container ">
-        <div className="flex justify-between items-center ">
+        <div className="flex justify-between items-center relative">
           <div className="text-3xl font-normal   ">
             <a>ShopVerse</a>
           </div>
@@ -55,18 +55,18 @@ const Header = () => {
           </div>
           <div className=" text-[30px] flex gap-5 items-center">
             <Link to={"/favorite"}>
-              <a className=" ">{
-              <>
-                 {
+              <a className=" ">
+                {
+                  <a>
+                    {favorite.length ? (
+                      <h2 className="absolute text-white w-[15px] h-[15px] rounded-[50%] bg-red-500 flex flex-col items-center justify-center right-[48px] text-[12px] top-[0px] ">
+                        {favorite.length}
+                      </h2>
+                    ) : null}
 
-                 favorite.length? <h2 className="favor">{favorite.length}
-                </h2>
-                 } 
                     <CiHeart />
-                  
-
-               :<CiHeart/>
-              </>}
+                  </a>
+                }
               </a>
             </Link>
             <Link to={"/basket"}>

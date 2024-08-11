@@ -1,7 +1,7 @@
 const obj = {
   product: JSON.parse(localStorage.getItem("product")) || [],
   favorite: JSON.parse(localStorage.getItem("favorite")) || [],
-  basket: [],
+  basket: JSON.parse(localStorage.getItem("basket")) ||[],
 };
 export const Reducer = (state = obj, action) => {
   switch (action.type) {
